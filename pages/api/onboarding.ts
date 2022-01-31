@@ -112,6 +112,11 @@ let config = {
 };
 
 const consumerReferralApi = (requestOptions:any, cb:any) => {
+  requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: consumerOnboardingData
+  };
   fetch("https://api.sandbox.paypal.com/v1/customer/consumer-referrals", requestOptions).then((res) => res.json())
   .then(
     (data) => {
@@ -131,11 +136,16 @@ const consumerReferralApi = (requestOptions:any, cb:any) => {
 
 
 const linkedInstrumentApi = (data: any, cb:any ) => {
+
 //res.status(200).json({ name: "John Doe" });
 console.log("linkedInstrumentApi", data)
 linkedInstrumentApiPayload.referral_id = data.referral_id;
 console.log(linkedInstrumentApiPayload )
-requestOptions.body = JSON.stringify(linkedInstrumentApiPayload)
+requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: JSON.stringify(linkedInstrumentApiPayload)
+};
 //console.log(requestOptions.body )
 fetch("https://api.sandbox.paypal.com/v1/payment-networks/linked-instruments", requestOptions).then((res) => res.json())
 .then(
