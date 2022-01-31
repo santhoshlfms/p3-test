@@ -22,7 +22,7 @@ var consumerOnboardingData = JSON.stringify({
         "status": "CONFIRMED"
       }
     },
-    "origin_country_code": "JP",
+    "origin_country_code": "KE",
     "phone_contacts": [
       {
         "phone": {
@@ -89,7 +89,7 @@ var linkedInstrumentApiPayload = {
       }
     }
   ],
-  "referral_id": "99c7f60575db4fbe880b4fe4633d8d9fde0a246c669f196c5713f439fa18a51e"
+  "referral_id": ""
 }
 
 var myHeaders = new Headers();
@@ -117,6 +117,7 @@ const consumerReferralApi = (requestOptions:any, cb:any) => {
     (data) => {
       //cb(data)
       console.log("completed consumer refferal")
+      console.log(data )
       linkedInstrumentApi(data, function(resp: any){
         cb(data)
       })
@@ -131,11 +132,11 @@ const consumerReferralApi = (requestOptions:any, cb:any) => {
 
 const linkedInstrumentApi = (data: any, cb:any ) => {
 //res.status(200).json({ name: "John Doe" });
-console.log("linkedInstrumentApi")
+console.log("linkedInstrumentApi", data)
 linkedInstrumentApiPayload.referral_id = data.referral_id;
 console.log(linkedInstrumentApiPayload )
 requestOptions.body = JSON.stringify(linkedInstrumentApiPayload)
-console.log(requestOptions.body )
+//console.log(requestOptions.body )
 fetch("https://api.sandbox.paypal.com/v1/payment-networks/linked-instruments", requestOptions).then((res) => res.json())
 .then(
   (data) => {
@@ -153,7 +154,8 @@ export default function handler(
   res: NextApiResponse<Data>
 ) {
   consumerReferralApi(requestOptions, function(data:any){
-    let onboardingURL = `https://www.sandbox.paypal.com/consumeronboarding/entry?referralid=`+data.referralid+`&redirect_uri=https://shopping-paypal.herokuapp.com/thankyou&state=channel%3DMobile%26Linkid%3Dtest&scope=scope_group_provisioning_platform`
+    console.log(data)
+    let onboardingURL = `https://www.sandbox.paypal.com/consumeronboarding/entry?referralid=`+data.referral_id+`&redirect_uri=https://shopping-paypal.herokuapp.com/thankyou&state=channel%3DMobile%26Linkid%3Dtest&scope=scope_group_provisioning_platform`
     console.log(onboardingURL)
     res.status(200).json({ url: onboardingURL });
   })
