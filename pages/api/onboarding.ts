@@ -53,7 +53,7 @@ var consumerOnboardingData = JSON.stringify({
     ],
     "email_addresses": [
       {
-        "email_address": "santhosh-mpesademo001@pp.com",
+        "email_address": "app2apptest@pp.com",
         "primary": true,
         "confirmed": true
       }
