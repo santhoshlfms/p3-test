@@ -3,7 +3,7 @@ import React from "react";
 
 const Home: NextPage = () => {
   const Onboarding = () => {
-    window.location = "https://shopping-paypal.herokuapp.com/thankyou";
+    window.location = "demopaypal://onboarding-callback";
     //window.location = "https://p3-test.vercel.app/test";
   };
 
