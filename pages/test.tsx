@@ -3,7 +3,7 @@ import React from "react";
 
 const Home: NextPage = () => {
   const Onboarding = () => {
-    window.location = "demopaypal://onboarding-callback";
+    window.location = "demopaypal://onboarding.callback";
     //window.location = "https://p3-test.vercel.app/test";
   };
 
@@ -14,6 +14,8 @@ const Home: NextPage = () => {
           PayPal linking flow complete - Success !!
           <div>
             <button onClick={() => Onboarding()}>Continue to BISB APP </button>{" "}
+            <br />
+            <a href="demopaypal://onboarding.callback">Go to APP </a>
           </div>
         </div>
       </div>
