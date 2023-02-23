@@ -176,7 +176,7 @@ export default function handler(
     let onboardingURL =
       `https://www.sandbox.paypal.com/consumeronboarding/entry?referralid=` +
       data.referral_id +
-      `&redirect_uri=https://p3-test.vercel.app/test&state=channel%3DMobile%26Linkid%3Dtest&scope=scope_group_provisioning_platform`;
+      `&redirect_uri=demopaypal://onboarding.callback&state=channel%3DMobile%26Linkid%3Dtest&scope=scope_group_provisioning_platform`;
     console.log(onboardingURL);
     res.status(200).json({ url: onboardingURL });
   });
