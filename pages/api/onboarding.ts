@@ -178,6 +178,6 @@ export default function handler(
       data.referral_id +
       `&redirect_uri=demopaypal://onboarding.callback&state=channel%3DMobile%26Linkid%3Dtest&scope=scope_group_provisioning_platform`;
     console.log(onboardingURL);
-    res.status(200).json({ url: onboardingURL });
+    res.status(200).json({ url: "https://www.sandbox.paypal.com/consumeronboarding/start?referralid=5f602d96830499f03458d4830314c12b246a3c89732c9a90a6f34abc8d8ea1ba&paypal_client_metadata_id=37cea2b259264e6f90ceec23ff87d5f4&country.x=MA&client_id=AUoCKihgvV1Q24KpRwL2y4ZcoECZUuwU3RWIUM3pwOOwAoYj9y4pTcgztChqcFcGhwyboxliyDwkNvSX&scope=scope_group_provisioning_platform&redirect_uri=attijaripaypal://signup.callback" });
   });
 }
